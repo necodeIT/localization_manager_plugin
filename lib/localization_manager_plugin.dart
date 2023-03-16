@@ -1,0 +1,1 @@
+library localization_manager_plugin;
