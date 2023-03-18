@@ -29,7 +29,4 @@ class Server {
   void onError(dynamic error) {
     print('WebSocket error occurred: $error');
   }
-
-
-  
 }
