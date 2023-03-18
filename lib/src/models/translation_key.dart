@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:localization_manager_plugin/src/models/translation_language.dart';
+import 'package:localization_manager_plugin/src/models/translation_parameter.dart';
 
 part 'translation_key.freezed.dart';
 part 'translation_key.g.dart';
@@ -21,6 +22,9 @@ class TranslationKey with _$TranslationKey {
 
     /// The description of this key
     required String? description,
+
+    /// Parameters that can be interpolated into the translation
+    required List<TranslationParameter> parameters,
   }) = _TranslationKey;
 
   factory TranslationKey.fromJson(Map<String, dynamic> json) => _$TranslationKeyFromJson(json);

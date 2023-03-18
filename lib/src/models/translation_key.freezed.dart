@@ -33,6 +33,10 @@ mixin _$TranslationKey {
   /// The description of this key
   String? get description => throw _privateConstructorUsedError;
 
+  /// Parameters that can be interpolated into the translation
+  List<TranslationParameter> get parameters =>
+      throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TranslationKeyCopyWith<TranslationKey> get copyWith =>
@@ -49,7 +53,8 @@ abstract class $TranslationKeyCopyWith<$Res> {
       {String name,
       Map<TranslationLanguage, String> translations,
       List<String> autocompleteValues,
-      String? description});
+      String? description,
+      List<TranslationParameter> parameters});
 }
 
 /// @nodoc
@@ -69,6 +74,7 @@ class _$TranslationKeyCopyWithImpl<$Res, $Val extends TranslationKey>
     Object? translations = null,
     Object? autocompleteValues = null,
     Object? description = freezed,
+    Object? parameters = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -87,6 +93,10 @@ class _$TranslationKeyCopyWithImpl<$Res, $Val extends TranslationKey>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      parameters: null == parameters
+          ? _value.parameters
+          : parameters // ignore: cast_nullable_to_non_nullable
+              as List<TranslationParameter>,
     ) as $Val);
   }
 }
@@ -103,7 +113,8 @@ abstract class _$$_TranslationKeyCopyWith<$Res>
       {String name,
       Map<TranslationLanguage, String> translations,
       List<String> autocompleteValues,
-      String? description});
+      String? description,
+      List<TranslationParameter> parameters});
 }
 
 /// @nodoc
@@ -121,6 +132,7 @@ class __$$_TranslationKeyCopyWithImpl<$Res>
     Object? translations = null,
     Object? autocompleteValues = null,
     Object? description = freezed,
+    Object? parameters = null,
   }) {
     return _then(_$_TranslationKey(
       name: null == name
@@ -139,6 +151,10 @@ class __$$_TranslationKeyCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      parameters: null == parameters
+          ? _value._parameters
+          : parameters // ignore: cast_nullable_to_non_nullable
+              as List<TranslationParameter>,
     ));
   }
 }
@@ -150,9 +166,11 @@ class _$_TranslationKey implements _TranslationKey {
       {required this.name,
       required final Map<TranslationLanguage, String> translations,
       required final List<String> autocompleteValues,
-      required this.description})
+      required this.description,
+      required final List<TranslationParameter> parameters})
       : _translations = translations,
-        _autocompleteValues = autocompleteValues;
+        _autocompleteValues = autocompleteValues,
+        _parameters = parameters;
 
   factory _$_TranslationKey.fromJson(Map<String, dynamic> json) =>
       _$$_TranslationKeyFromJson(json);
@@ -188,9 +206,20 @@ class _$_TranslationKey implements _TranslationKey {
   @override
   final String? description;
 
+  /// Parameters that can be interpolated into the translation
+  final List<TranslationParameter> _parameters;
+
+  /// Parameters that can be interpolated into the translation
+  @override
+  List<TranslationParameter> get parameters {
+    if (_parameters is EqualUnmodifiableListView) return _parameters;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_parameters);
+  }
+
   @override
   String toString() {
-    return 'TranslationKey(name: $name, translations: $translations, autocompleteValues: $autocompleteValues, description: $description)';
+    return 'TranslationKey(name: $name, translations: $translations, autocompleteValues: $autocompleteValues, description: $description, parameters: $parameters)';
   }
 
   @override
@@ -204,7 +233,9 @@ class _$_TranslationKey implements _TranslationKey {
             const DeepCollectionEquality()
                 .equals(other._autocompleteValues, _autocompleteValues) &&
             (identical(other.description, description) ||
-                other.description == description));
+                other.description == description) &&
+            const DeepCollectionEquality()
+                .equals(other._parameters, _parameters));
   }
 
   @JsonKey(ignore: true)
@@ -214,7 +245,8 @@ class _$_TranslationKey implements _TranslationKey {
       name,
       const DeepCollectionEquality().hash(_translations),
       const DeepCollectionEquality().hash(_autocompleteValues),
-      description);
+      description,
+      const DeepCollectionEquality().hash(_parameters));
 
   @JsonKey(ignore: true)
   @override
@@ -232,10 +264,12 @@ class _$_TranslationKey implements _TranslationKey {
 
 abstract class _TranslationKey implements TranslationKey {
   factory _TranslationKey(
-      {required final String name,
-      required final Map<TranslationLanguage, String> translations,
-      required final List<String> autocompleteValues,
-      required final String? description}) = _$_TranslationKey;
+          {required final String name,
+          required final Map<TranslationLanguage, String> translations,
+          required final List<String> autocompleteValues,
+          required final String? description,
+          required final List<TranslationParameter> parameters}) =
+      _$_TranslationKey;
 
   factory _TranslationKey.fromJson(Map<String, dynamic> json) =
       _$_TranslationKey.fromJson;
@@ -256,6 +290,10 @@ abstract class _TranslationKey implements TranslationKey {
 
   /// The description of this key
   String? get description;
+  @override
+
+  /// Parameters that can be interpolated into the translation
+  List<TranslationParameter> get parameters;
   @override
   @JsonKey(ignore: true)
   _$$_TranslationKeyCopyWith<_$_TranslationKey> get copyWith =>
