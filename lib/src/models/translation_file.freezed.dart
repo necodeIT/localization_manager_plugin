@@ -110,8 +110,8 @@ class __$$_TranslationFileCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TranslationFile implements _TranslationFile {
-  _$_TranslationFile({required this.language, required this.path});
+class _$_TranslationFile extends _TranslationFile {
+  _$_TranslationFile({required this.language, required this.path}) : super._();
 
   factory _$_TranslationFile.fromJson(Map<String, dynamic> json) =>
       _$$_TranslationFileFromJson(json);
@@ -157,10 +157,11 @@ class _$_TranslationFile implements _TranslationFile {
   }
 }
 
-abstract class _TranslationFile implements TranslationFile {
+abstract class _TranslationFile extends TranslationFile {
   factory _TranslationFile(
       {required final TranslationLanguage language,
       required final String path}) = _$_TranslationFile;
+  _TranslationFile._() : super._();
 
   factory _TranslationFile.fromJson(Map<String, dynamic> json) =
       _$_TranslationFile.fromJson;

@@ -27,6 +27,12 @@ mixin _$TranslationKey {
   Map<TranslationLanguage, String> get translations =>
       throw _privateConstructorUsedError;
 
+  /// The values that can be used for autocompletion
+  List<String> get autocompleteValues => throw _privateConstructorUsedError;
+
+  /// The description of this key
+  String? get description => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $TranslationKeyCopyWith<TranslationKey> get copyWith =>
@@ -39,7 +45,11 @@ abstract class $TranslationKeyCopyWith<$Res> {
           TranslationKey value, $Res Function(TranslationKey) then) =
       _$TranslationKeyCopyWithImpl<$Res, TranslationKey>;
   @useResult
-  $Res call({String name, Map<TranslationLanguage, String> translations});
+  $Res call(
+      {String name,
+      Map<TranslationLanguage, String> translations,
+      List<String> autocompleteValues,
+      String? description});
 }
 
 /// @nodoc
@@ -57,6 +67,8 @@ class _$TranslationKeyCopyWithImpl<$Res, $Val extends TranslationKey>
   $Res call({
     Object? name = null,
     Object? translations = null,
+    Object? autocompleteValues = null,
+    Object? description = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -67,6 +79,14 @@ class _$TranslationKeyCopyWithImpl<$Res, $Val extends TranslationKey>
           ? _value.translations
           : translations // ignore: cast_nullable_to_non_nullable
               as Map<TranslationLanguage, String>,
+      autocompleteValues: null == autocompleteValues
+          ? _value.autocompleteValues
+          : autocompleteValues // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -79,7 +99,11 @@ abstract class _$$_TranslationKeyCopyWith<$Res>
       __$$_TranslationKeyCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Map<TranslationLanguage, String> translations});
+  $Res call(
+      {String name,
+      Map<TranslationLanguage, String> translations,
+      List<String> autocompleteValues,
+      String? description});
 }
 
 /// @nodoc
@@ -95,6 +119,8 @@ class __$$_TranslationKeyCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? translations = null,
+    Object? autocompleteValues = null,
+    Object? description = freezed,
   }) {
     return _then(_$_TranslationKey(
       name: null == name
@@ -105,6 +131,14 @@ class __$$_TranslationKeyCopyWithImpl<$Res>
           ? _value._translations
           : translations // ignore: cast_nullable_to_non_nullable
               as Map<TranslationLanguage, String>,
+      autocompleteValues: null == autocompleteValues
+          ? _value._autocompleteValues
+          : autocompleteValues // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -114,8 +148,11 @@ class __$$_TranslationKeyCopyWithImpl<$Res>
 class _$_TranslationKey implements _TranslationKey {
   _$_TranslationKey(
       {required this.name,
-      required final Map<TranslationLanguage, String> translations})
-      : _translations = translations;
+      required final Map<TranslationLanguage, String> translations,
+      required final List<String> autocompleteValues,
+      required this.description})
+      : _translations = translations,
+        _autocompleteValues = autocompleteValues;
 
   factory _$_TranslationKey.fromJson(Map<String, dynamic> json) =>
       _$$_TranslationKeyFromJson(json);
@@ -135,9 +172,25 @@ class _$_TranslationKey implements _TranslationKey {
     return EqualUnmodifiableMapView(_translations);
   }
 
+  /// The values that can be used for autocompletion
+  final List<String> _autocompleteValues;
+
+  /// The values that can be used for autocompletion
+  @override
+  List<String> get autocompleteValues {
+    if (_autocompleteValues is EqualUnmodifiableListView)
+      return _autocompleteValues;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_autocompleteValues);
+  }
+
+  /// The description of this key
+  @override
+  final String? description;
+
   @override
   String toString() {
-    return 'TranslationKey(name: $name, translations: $translations)';
+    return 'TranslationKey(name: $name, translations: $translations, autocompleteValues: $autocompleteValues, description: $description)';
   }
 
   @override
@@ -147,13 +200,21 @@ class _$_TranslationKey implements _TranslationKey {
             other is _$_TranslationKey &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality()
-                .equals(other._translations, _translations));
+                .equals(other._translations, _translations) &&
+            const DeepCollectionEquality()
+                .equals(other._autocompleteValues, _autocompleteValues) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, const DeepCollectionEquality().hash(_translations));
+      runtimeType,
+      name,
+      const DeepCollectionEquality().hash(_translations),
+      const DeepCollectionEquality().hash(_autocompleteValues),
+      description);
 
   @JsonKey(ignore: true)
   @override
@@ -171,9 +232,10 @@ class _$_TranslationKey implements _TranslationKey {
 
 abstract class _TranslationKey implements TranslationKey {
   factory _TranslationKey(
-          {required final String name,
-          required final Map<TranslationLanguage, String> translations}) =
-      _$_TranslationKey;
+      {required final String name,
+      required final Map<TranslationLanguage, String> translations,
+      required final List<String> autocompleteValues,
+      required final String? description}) = _$_TranslationKey;
 
   factory _TranslationKey.fromJson(Map<String, dynamic> json) =
       _$_TranslationKey.fromJson;
@@ -186,6 +248,14 @@ abstract class _TranslationKey implements TranslationKey {
 
   /// The translation values for this key
   Map<TranslationLanguage, String> get translations;
+  @override
+
+  /// The values that can be used for autocompletion
+  List<String> get autocompleteValues;
+  @override
+
+  /// The description of this key
+  String? get description;
   @override
   @JsonKey(ignore: true)
   _$$_TranslationKeyCopyWith<_$_TranslationKey> get copyWith =>

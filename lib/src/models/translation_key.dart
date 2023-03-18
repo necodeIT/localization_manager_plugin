@@ -15,6 +15,12 @@ class TranslationKey with _$TranslationKey {
 
     /// The translation values for this key
     required Map<TranslationLanguage, String> translations,
+
+    /// The values that can be used for autocompletion
+    required List<String> autocompleteValues,
+
+    /// The description of this key
+    required String? description,
   }) = _TranslationKey;
 
   factory TranslationKey.fromJson(Map<String, dynamic> json) => _$TranslationKeyFromJson(json);

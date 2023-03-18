@@ -13,6 +13,10 @@ _$_TranslationKey _$$_TranslationKeyFromJson(Map<String, dynamic> json) =>
         (k, e) =>
             MapEntry($enumDecode(_$TranslationLanguageEnumMap, k), e as String),
       ),
+      autocompleteValues: (json['autocompleteValues'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
+      description: json['description'] as String?,
     );
 
 Map<String, dynamic> _$$_TranslationKeyToJson(_$_TranslationKey instance) =>
@@ -20,6 +24,8 @@ Map<String, dynamic> _$$_TranslationKeyToJson(_$_TranslationKey instance) =>
       'name': instance.name,
       'translations': instance.translations
           .map((k, e) => MapEntry(_$TranslationLanguageEnumMap[k]!, e)),
+      'autocompleteValues': instance.autocompleteValues,
+      'description': instance.description,
     };
 
 const _$TranslationLanguageEnumMap = {
