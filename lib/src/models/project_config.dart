@@ -24,7 +24,7 @@ class ProjectConfig with _$ProjectConfig {
     /// The default language of this project
     required TranslationLanguage defaultLanguage,
 
-    /// The path to the source files of this project
+    /// Relative path from the config file to the source files of this project
     required String src,
 
     /// The translation files of this project (used by the plugin to store framework specific translations)

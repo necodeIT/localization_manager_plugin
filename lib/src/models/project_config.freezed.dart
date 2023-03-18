@@ -32,7 +32,7 @@ mixin _$ProjectConfig {
   /// The default language of this project
   TranslationLanguage get defaultLanguage => throw _privateConstructorUsedError;
 
-  /// The path to the source files of this project
+  /// Relative path from the config file to the source files of this project
   String get src => throw _privateConstructorUsedError;
 
   /// The translation files of this project (used by the plugin to store framework specific translations)
@@ -212,7 +212,7 @@ class _$_ProjectConfig implements _ProjectConfig {
   @override
   final TranslationLanguage defaultLanguage;
 
-  /// The path to the source files of this project
+  /// Relative path from the config file to the source files of this project
   @override
   final String src;
 
@@ -305,7 +305,7 @@ abstract class _ProjectConfig implements ProjectConfig {
   TranslationLanguage get defaultLanguage;
   @override
 
-  /// The path to the source files of this project
+  /// Relative path from the config file to the source files of this project
   String get src;
   @override
 

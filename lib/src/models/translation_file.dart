@@ -17,7 +17,7 @@ class TranslationFile with _$TranslationFile {
     /// The language stored in this file
     required TranslationLanguage language,
 
-    /// The path to this file
+    /// The relative path from the config file to this file
     required String path,
   }) = _TranslationFile;
 

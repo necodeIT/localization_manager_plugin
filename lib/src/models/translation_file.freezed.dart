@@ -23,7 +23,7 @@ mixin _$TranslationFile {
   /// The language stored in this file
   TranslationLanguage get language => throw _privateConstructorUsedError;
 
-  /// The path to this file
+  /// The relative path from the config file to this file
   String get path => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -120,7 +120,7 @@ class _$_TranslationFile extends _TranslationFile {
   @override
   final TranslationLanguage language;
 
-  /// The path to this file
+  /// The relative path from the config file to this file
   @override
   final String path;
 
@@ -172,7 +172,7 @@ abstract class _TranslationFile extends TranslationFile {
   TranslationLanguage get language;
   @override
 
-  /// The path to this file
+  /// The relative path from the config file to this file
   String get path;
   @override
   @JsonKey(ignore: true)
