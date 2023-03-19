@@ -30,7 +30,7 @@ mixin _$RemoteCall {
   ///
   /// This is used to identify the response, we strongly recommend to use a uuid.
   ///
-  /// If this is null, no response will be sent back (also the server will not wait for the response)
+  /// If this is null, no response will be sent back to the caller. (fire and forget)
   String? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -156,7 +156,7 @@ class _$_RemoteCall implements _RemoteCall {
   ///
   /// This is used to identify the response, we strongly recommend to use a uuid.
   ///
-  /// If this is null, no response will be sent back (also the server will not wait for the response)
+  /// If this is null, no response will be sent back to the caller. (fire and forget)
   @override
   final String? id;
 
@@ -217,7 +217,7 @@ abstract class _RemoteCall implements RemoteCall {
   ///
   /// This is used to identify the response, we strongly recommend to use a uuid.
   ///
-  /// If this is null, no response will be sent back (also the server will not wait for the response)
+  /// If this is null, no response will be sent back to the caller. (fire and forget)
   String? get id;
   @override
   @JsonKey(ignore: true)

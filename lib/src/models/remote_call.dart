@@ -9,6 +9,8 @@ part 'remote_call.g.dart';
 ///
 /// This is used to send a remote call to the server or plugin
 class RemoteCall with _$RemoteCall {
+  ///
+  /// This is used to send a remote call to the server or plugin
   factory RemoteCall({
     /// The method to call
     required String method,
@@ -20,7 +22,7 @@ class RemoteCall with _$RemoteCall {
     ///
     /// This is used to identify the response, we strongly recommend to use a uuid.
     ///
-    /// If this is null, no response will be sent back (also the server will not wait for the response)
+    /// If this is null, no response will be sent back to the caller. (fire and forget)
     required String? id,
   }) = _RemoteCall;
 
