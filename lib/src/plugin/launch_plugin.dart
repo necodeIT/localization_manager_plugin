@@ -5,7 +5,35 @@ part of localization_manager_plugin;
 /// [args] are the arguments passed to the plugin from the main method.
 ///
 /// Returns a [Future] that completes when the connection to the server is closed.
-Future<void> launchPlguin(List<String> args, {required ProjectParser parseProject, required TranslationFileGenerator generateTranslationFiles}) async {}
+Future<void> launchPlguin(List<String> args, {required ProjectParser parseProject, required TranslationFileGenerator generateTranslationFiles}) async {
+  final serverAddress = args.first;
+
+  final server = Server(serverAddress);
+
+  final logger = Logger(server);
+
+  server.registerHandler('parseProject', (params) {
+    final config = ProjectConfig.fromJson(params['config']);
+
+    final folder = parseProject(config, server, logger);
+
+    return folder.toJson();
+  });
+
+  server.registerHandler('generateTranslationFiles', (params) {
+    final config = ProjectConfig.fromJson(params['config']);
+
+    final folder = TranslationFolder.fromJson(params['folder']);
+
+    generateTranslationFiles(config, server, logger, folder);
+
+    return null;
+  });
+
+  await server.connect();
+
+  await server.waitForClose();
+}
 
 /// A function that genrates a [TranslationFolder] from the translation files present.
 ///
