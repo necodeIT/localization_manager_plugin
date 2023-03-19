@@ -1,3 +1,4 @@
+/// Contains all models used by the plugin and the Flutter app (aka the server).
 library localization_manager_models;
 
 export 'src/models/project_config.dart';

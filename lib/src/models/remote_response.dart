@@ -50,5 +50,6 @@ class RemoteResponse with _$RemoteResponse {
   /// Whether this response is an error.
   bool get isError => this is RemoteResponseError;
 
+  /// Creates a [RemoteResponse] from a json map
   factory RemoteResponse.fromJson(Map<String, dynamic> json) => _$RemoteResponseFromJson(json);
 }

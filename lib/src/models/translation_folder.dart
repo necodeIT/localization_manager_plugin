@@ -35,5 +35,6 @@ class TranslationFolder with _$TranslationFolder {
   /// Returns true if this folder has subfolders
   bool get hasFolders => folders.isNotEmpty;
 
+  /// Creates a [TranslationFolder] from a json map
   factory TranslationFolder.fromJson(Map<String, dynamic> json) => _$TranslationFolderFromJson(json);
 }

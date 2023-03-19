@@ -24,5 +24,6 @@ class TranslationFile with _$TranslationFile {
   /// The [File] object for this [TranslationFile]
   File get file => File(path);
 
+  /// Creates a [TranslationFile] from a json map
   factory TranslationFile.fromJson(Map<String, dynamic> json) => _$TranslationFileFromJson(json);
 }

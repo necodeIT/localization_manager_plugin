@@ -1,3 +1,4 @@
+/// Manages the communication between the plugin and the Flutter app (aka the server). Also reexports the models.
 library localization_manager_plugin;
 
 export 'models.dart' show ProjectConfig, TranslationLanguage, TranslationFile, TranslationFolder, TranslationKey, TranslationParameter;

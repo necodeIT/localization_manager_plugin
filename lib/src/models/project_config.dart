@@ -31,5 +31,6 @@ class ProjectConfig with _$ProjectConfig {
     required List<TranslationFile> translationFiles,
   }) = _ProjectConfig;
 
+  /// Creates a [ProjectConfig] from a json map
   factory ProjectConfig.fromJson(Map<String, dynamic> json) => _$ProjectConfigFromJson(json);
 }

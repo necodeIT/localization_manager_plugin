@@ -27,5 +27,7 @@ enum LogLevel {
 
   /// The emoji used for this log level.
   final String emoji;
+
+  /// Creates a new [LogLevel] with the given [emoji].
   const LogLevel(this.emoji);
 }

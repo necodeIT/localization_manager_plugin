@@ -8,10 +8,15 @@ part 'log_entry.g.dart';
 
 /// Log entry sent from the plugin to the server
 class LogEntry with _$LogEntry {
+  /// Log entry sent from the plugin to the server
   factory LogEntry({
+    /// The message to log
     required String message,
+
+    /// The log level of this entry
     required LogLevel level,
   }) = _LogEntry;
 
+  /// Creates a [LogEntry] from a json map
   factory LogEntry.fromJson(Map<String, dynamic> json) => _$LogEntryFromJson(json);
 }

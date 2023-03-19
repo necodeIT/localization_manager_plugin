@@ -19,6 +19,7 @@ class Server {
   /// Holds the connection to the server and handles the communication.
   Server(this.serverAddress);
 
+  /// Establishes a connection to the server.
   Future<void> connect() {
     return WebSocket.connect(serverAddress).then((socket) {
       _socket = socket;
@@ -120,6 +121,7 @@ class Server {
     return completer.future;
   }
 
+  /// Sends a response to the server.
   void respond(RemoteResponse response) {
     _socket!.add(
       jsonEncode(

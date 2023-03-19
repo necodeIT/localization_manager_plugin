@@ -1,9 +1,13 @@
 part of localization_manager_plugin;
 
+/// Provides utilities for logging
 class Logger {
   static const String _method = "log";
+
+  /// The server to send the logs to
   final Server server;
 
+  /// Provides utilities for logging
   Logger(this.server);
 
   /// Logs a [message] with [LogLevel.info].

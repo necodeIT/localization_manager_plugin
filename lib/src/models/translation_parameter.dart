@@ -19,5 +19,6 @@ class TranslationParameter with _$TranslationParameter {
     required String type,
   }) = _TranslationParameter;
 
+  /// Creates a [TranslationParameter] from a json map
   factory TranslationParameter.fromJson(Map<String, dynamic> json) => _$TranslationParameterFromJson(json);
 }

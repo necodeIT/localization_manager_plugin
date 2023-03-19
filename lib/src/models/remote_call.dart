@@ -37,5 +37,6 @@ class RemoteCall with _$RemoteCall {
   /// Creates a [RemoteResponseResult] from this [RemoteCall] with the given [result].
   RemoteResponseResult result(dynamic result) => RemoteResponseResult(id: id!, result: result.toJson());
 
+  /// Creates a [RemoteCall] from a json map
   factory RemoteCall.fromJson(Map<String, dynamic> json) => _$RemoteCallFromJson(json);
 }

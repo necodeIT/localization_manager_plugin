@@ -27,5 +27,6 @@ class TranslationKey with _$TranslationKey {
     required List<TranslationParameter> parameters,
   }) = _TranslationKey;
 
+  /// Creates a [TranslationKey] from a json map
   factory TranslationKey.fromJson(Map<String, dynamic> json) => _$TranslationKeyFromJson(json);
 }

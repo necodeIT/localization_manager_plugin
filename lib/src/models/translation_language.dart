@@ -1638,6 +1638,7 @@ enum TranslationLanguage {
   zu_ZA('zu-ZA', 'iNingizimu Afrika'),
   ;
 
+  /// Creates a new [TranslationLanguage] with the given [locale] and [nativeName]
   const TranslationLanguage(this.locale, this.nativeName);
 
   /// The locale code of the language

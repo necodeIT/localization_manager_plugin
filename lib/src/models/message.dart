@@ -27,5 +27,6 @@ class Message with _$Message {
     required Map<String, dynamic> data,
   }) = _Message;
 
+  /// Creates a [Message] from a json map
   factory Message.fromJson(Map<String, dynamic> json) => _$MessageFromJson(json);
 }
