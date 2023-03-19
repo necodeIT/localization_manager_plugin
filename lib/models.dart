@@ -11,3 +11,4 @@ export 'src/models/translation_parameter.dart';
 export 'src/models/log_entry.dart';
 export 'src/models/log_level.dart';
 export 'src/models/message.dart';
+export 'src/models/message_type.dart';
