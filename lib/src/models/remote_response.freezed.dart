@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 RemoteResponse _$RemoteResponseFromJson(Map<String, dynamic> json) {
   switch (json['runtimeType']) {
     case 'sucess':
-      return RemoteResponseSuccess.fromJson(json);
+      return RemoteResponseResult.fromJson(json);
     case 'error':
       return RemoteResponseError.fromJson(json);
 
@@ -52,19 +52,19 @@ mixin _$RemoteResponse {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RemoteResponseSuccess value) sucess,
+    required TResult Function(RemoteResponseResult value) sucess,
     required TResult Function(RemoteResponseError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RemoteResponseSuccess value)? sucess,
+    TResult? Function(RemoteResponseResult value)? sucess,
     TResult? Function(RemoteResponseError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RemoteResponseSuccess value)? sucess,
+    TResult Function(RemoteResponseResult value)? sucess,
     TResult Function(RemoteResponseError value)? error,
     required TResult orElse(),
   }) =>
@@ -109,22 +109,22 @@ class _$RemoteResponseCopyWithImpl<$Res, $Val extends RemoteResponse>
 }
 
 /// @nodoc
-abstract class _$$RemoteResponseSuccessCopyWith<$Res>
+abstract class _$$RemoteResponseResultCopyWith<$Res>
     implements $RemoteResponseCopyWith<$Res> {
-  factory _$$RemoteResponseSuccessCopyWith(_$RemoteResponseSuccess value,
-          $Res Function(_$RemoteResponseSuccess) then) =
-      __$$RemoteResponseSuccessCopyWithImpl<$Res>;
+  factory _$$RemoteResponseResultCopyWith(_$RemoteResponseResult value,
+          $Res Function(_$RemoteResponseResult) then) =
+      __$$RemoteResponseResultCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, Map<String, dynamic> result});
 }
 
 /// @nodoc
-class __$$RemoteResponseSuccessCopyWithImpl<$Res>
-    extends _$RemoteResponseCopyWithImpl<$Res, _$RemoteResponseSuccess>
-    implements _$$RemoteResponseSuccessCopyWith<$Res> {
-  __$$RemoteResponseSuccessCopyWithImpl(_$RemoteResponseSuccess _value,
-      $Res Function(_$RemoteResponseSuccess) _then)
+class __$$RemoteResponseResultCopyWithImpl<$Res>
+    extends _$RemoteResponseCopyWithImpl<$Res, _$RemoteResponseResult>
+    implements _$$RemoteResponseResultCopyWith<$Res> {
+  __$$RemoteResponseResultCopyWithImpl(_$RemoteResponseResult _value,
+      $Res Function(_$RemoteResponseResult) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -133,7 +133,7 @@ class __$$RemoteResponseSuccessCopyWithImpl<$Res>
     Object? id = null,
     Object? result = null,
   }) {
-    return _then(_$RemoteResponseSuccess(
+    return _then(_$RemoteResponseResult(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -148,8 +148,8 @@ class __$$RemoteResponseSuccessCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RemoteResponseSuccess extends RemoteResponseSuccess {
-  _$RemoteResponseSuccess(
+class _$RemoteResponseResult extends RemoteResponseResult {
+  _$RemoteResponseResult(
       {required this.id,
       required final Map<String, dynamic> result,
       final String? $type})
@@ -157,8 +157,8 @@ class _$RemoteResponseSuccess extends RemoteResponseSuccess {
         $type = $type ?? 'sucess',
         super._();
 
-  factory _$RemoteResponseSuccess.fromJson(Map<String, dynamic> json) =>
-      _$$RemoteResponseSuccessFromJson(json);
+  factory _$RemoteResponseResult.fromJson(Map<String, dynamic> json) =>
+      _$$RemoteResponseResultFromJson(json);
 
   /// The id of the [RemoteCall]
   @override
@@ -187,7 +187,7 @@ class _$RemoteResponseSuccess extends RemoteResponseSuccess {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RemoteResponseSuccess &&
+            other is _$RemoteResponseResult &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._result, _result));
   }
@@ -200,8 +200,8 @@ class _$RemoteResponseSuccess extends RemoteResponseSuccess {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RemoteResponseSuccessCopyWith<_$RemoteResponseSuccess> get copyWith =>
-      __$$RemoteResponseSuccessCopyWithImpl<_$RemoteResponseSuccess>(
+  _$$RemoteResponseResultCopyWith<_$RemoteResponseResult> get copyWith =>
+      __$$RemoteResponseResultCopyWithImpl<_$RemoteResponseResult>(
           this, _$identity);
 
   @override
@@ -238,7 +238,7 @@ class _$RemoteResponseSuccess extends RemoteResponseSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RemoteResponseSuccess value) sucess,
+    required TResult Function(RemoteResponseResult value) sucess,
     required TResult Function(RemoteResponseError value) error,
   }) {
     return sucess(this);
@@ -247,7 +247,7 @@ class _$RemoteResponseSuccess extends RemoteResponseSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RemoteResponseSuccess value)? sucess,
+    TResult? Function(RemoteResponseResult value)? sucess,
     TResult? Function(RemoteResponseError value)? error,
   }) {
     return sucess?.call(this);
@@ -256,7 +256,7 @@ class _$RemoteResponseSuccess extends RemoteResponseSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RemoteResponseSuccess value)? sucess,
+    TResult Function(RemoteResponseResult value)? sucess,
     TResult Function(RemoteResponseError value)? error,
     required TResult orElse(),
   }) {
@@ -268,20 +268,20 @@ class _$RemoteResponseSuccess extends RemoteResponseSuccess {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$RemoteResponseSuccessToJson(
+    return _$$RemoteResponseResultToJson(
       this,
     );
   }
 }
 
-abstract class RemoteResponseSuccess extends RemoteResponse {
-  factory RemoteResponseSuccess(
+abstract class RemoteResponseResult extends RemoteResponse {
+  factory RemoteResponseResult(
       {required final String id,
-      required final Map<String, dynamic> result}) = _$RemoteResponseSuccess;
-  RemoteResponseSuccess._() : super._();
+      required final Map<String, dynamic> result}) = _$RemoteResponseResult;
+  RemoteResponseResult._() : super._();
 
-  factory RemoteResponseSuccess.fromJson(Map<String, dynamic> json) =
-      _$RemoteResponseSuccess.fromJson;
+  factory RemoteResponseResult.fromJson(Map<String, dynamic> json) =
+      _$RemoteResponseResult.fromJson;
 
   @override
 
@@ -292,7 +292,7 @@ abstract class RemoteResponseSuccess extends RemoteResponse {
   Map<String, dynamic> get result;
   @override
   @JsonKey(ignore: true)
-  _$$RemoteResponseSuccessCopyWith<_$RemoteResponseSuccess> get copyWith =>
+  _$$RemoteResponseResultCopyWith<_$RemoteResponseResult> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -415,7 +415,7 @@ class _$RemoteResponseError extends RemoteResponseError {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(RemoteResponseSuccess value) sucess,
+    required TResult Function(RemoteResponseResult value) sucess,
     required TResult Function(RemoteResponseError value) error,
   }) {
     return error(this);
@@ -424,7 +424,7 @@ class _$RemoteResponseError extends RemoteResponseError {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(RemoteResponseSuccess value)? sucess,
+    TResult? Function(RemoteResponseResult value)? sucess,
     TResult? Function(RemoteResponseError value)? error,
   }) {
     return error?.call(this);
@@ -433,7 +433,7 @@ class _$RemoteResponseError extends RemoteResponseError {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(RemoteResponseSuccess value)? sucess,
+    TResult Function(RemoteResponseResult value)? sucess,
     TResult Function(RemoteResponseError value)? error,
     required TResult orElse(),
   }) {

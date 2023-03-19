@@ -34,8 +34,8 @@ class RemoteCall with _$RemoteCall {
   /// Creates a [RemoteResponseError] with an NoSuchMethodError for [method].
   RemoteResponseError raiseNoSuchMethodError() => RemoteResponseError(id: id!, message: "NoSuchMethodError: The method '$method' is not registered.");
 
-  /// Creates a [RemoteResponseSuccess] from this [RemoteCall] with the given [result].
-  RemoteResponseSuccess result(dynamic result) => RemoteResponseSuccess(id: id!, result: result.toJson());
+  /// Creates a [RemoteResponseResult] from this [RemoteCall] with the given [result].
+  RemoteResponseResult result(dynamic result) => RemoteResponseResult(id: id!, result: result.toJson());
 
   factory RemoteCall.fromJson(Map<String, dynamic> json) => _$RemoteCallFromJson(json);
 }

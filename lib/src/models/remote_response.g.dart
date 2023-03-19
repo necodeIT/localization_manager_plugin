@@ -6,16 +6,16 @@ part of 'remote_response.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$RemoteResponseSuccess _$$RemoteResponseSuccessFromJson(
+_$RemoteResponseResult _$$RemoteResponseResultFromJson(
         Map<String, dynamic> json) =>
-    _$RemoteResponseSuccess(
+    _$RemoteResponseResult(
       id: json['id'] as String,
       result: json['result'] as Map<String, dynamic>,
       $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$RemoteResponseSuccessToJson(
-        _$RemoteResponseSuccess instance) =>
+Map<String, dynamic> _$$RemoteResponseResultToJson(
+        _$RemoteResponseResult instance) =>
     <String, dynamic>{
       'id': instance.id,
       'result': instance.result,

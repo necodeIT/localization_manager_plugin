@@ -54,9 +54,9 @@ class Server {
             if (call.id != null) {
               respond(call.result(result));
             }
-          } catch (e) {
+          } catch (e, stack) {
             if (call.id != null) {
-              respond(call.raise(e.toString()));
+              respond(call.raise("$e\n\n$stack"));
             }
           }
           break;
@@ -76,7 +76,7 @@ class Server {
   }
 
   /// Waits for the server to close the connection.
-  Future<void> waitForClose() => _socket!.done;
+  Future<void> waitForClose() async => await _socket!.done;
 
   /// Calls a method on the server without waiting for a response.
   void invoke(String method, Map<String, dynamic> params) {

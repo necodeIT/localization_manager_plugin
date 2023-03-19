@@ -18,7 +18,7 @@ class RemoteResponse with _$RemoteResponse {
 
     /// The result of the method invoked by the [RemoteCall]
     required Map<String, dynamic> result,
-  }) = RemoteResponseSuccess;
+  }) = RemoteResponseResult;
 
   /// Represents a remote response to a [RemoteCall] that failed.
   factory RemoteResponse.error({
@@ -44,8 +44,8 @@ class RemoteResponse with _$RemoteResponse {
         message: "ArgumentError: Invalid arguments passed. ${expected != null ? 'Valid arguments: $expected' : ''}",
       );
 
-  /// Whether this response is a success.
-  bool get isSuccess => this is RemoteResponseSuccess;
+  /// Whether this response suceeded and holds a result.
+  bool get isResult => this is RemoteResponseResult;
 
   /// Whether this response is an error.
   bool get isError => this is RemoteResponseError;

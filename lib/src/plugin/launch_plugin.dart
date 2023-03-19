@@ -13,11 +13,11 @@ Future<void> launchPlguin(List<String> args, {required ProjectParser parseProjec
   final logger = Logger(server);
 
   server.registerHandler('parseProject', (params) {
-    final config = ProjectConfig.fromJson(params['config']);
+    final config = ProjectConfig.fromJson(params);
 
     final folder = parseProject(config, server, logger);
 
-    return folder.toJson();
+    return folder;
   });
 
   server.registerHandler('generateTranslationFiles', (params) {
