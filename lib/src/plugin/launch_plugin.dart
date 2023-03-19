@@ -26,8 +26,6 @@ Future<void> launchPlguin(List<String> args, {required ProjectParser parseProjec
     final folder = TranslationFolder.fromJson(params['folder']);
 
     generateTranslationFiles(config, server, logger, folder);
-
-    return null;
   });
 
   await server.connect();

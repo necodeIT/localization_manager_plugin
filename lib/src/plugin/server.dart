@@ -51,6 +51,10 @@ class Server {
           try {
             var result = _handlers[call.method]!.call(call.params);
 
+            if (result == null && call.id != null) {
+              throw "The handler for ${call.method} returned null. Every handler must return a value if a response is expected.";
+            }
+
             if (call.id != null) {
               respond(call.result(result));
             }
