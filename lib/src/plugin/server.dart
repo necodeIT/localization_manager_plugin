@@ -7,6 +7,7 @@ class Server {
 
   WebSocket? _socket;
   final Map<String, dynamic Function(Map<String, dynamic>)> _handlers = {};
+  final StreamController _responses = StreamController<RemoteResponse>.broadcast();
 
   /// Registeres a [handler] for the given [method].
   ///
@@ -34,6 +35,23 @@ class Server {
   void _parseMessage(dynamic data) {
     try {
       final message = Message.fromJson(jsonDecode(data));
+
+      switch (message.type) {
+        case MessageType.call:
+          final call = RemoteCall.fromJson(message.data);
+
+          // TODO: check if method has handler and return error if not
+
+          // TODO: call handler and return result (if id is specified)
+
+          _handlers[call.method]!.call(call.params);
+          break;
+        case MessageType.response:
+          final response = RemoteResponse.fromJson(message.data);
+
+          _responses.add(response);
+          break;
+      }
     } catch (e) {
       print(e);
     }
@@ -61,7 +79,7 @@ class Server {
     final id = Uuid().v4();
     final completer = Completer<RemoteResponse>();
 
-    var subscription = _socket!.listen((message) {
+    var subscription = _responses.stream.listen((message) {
       final response = RemoteResponse.fromJson(jsonDecode(message));
       if (response.id == id) {
         completer.complete(response);
