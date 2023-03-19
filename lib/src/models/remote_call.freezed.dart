@@ -127,12 +127,13 @@ class __$$_RemoteCallCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RemoteCall implements _RemoteCall {
+class _$_RemoteCall extends _RemoteCall {
   _$_RemoteCall(
       {required this.method,
       required final Map<String, dynamic> params,
       required this.id})
-      : _params = params;
+      : _params = params,
+        super._();
 
   factory _$_RemoteCall.fromJson(Map<String, dynamic> json) =>
       _$$_RemoteCallFromJson(json);
@@ -194,11 +195,12 @@ class _$_RemoteCall implements _RemoteCall {
   }
 }
 
-abstract class _RemoteCall implements RemoteCall {
+abstract class _RemoteCall extends RemoteCall {
   factory _RemoteCall(
       {required final String method,
       required final Map<String, dynamic> params,
       required final String? id}) = _$_RemoteCall;
+  _RemoteCall._() : super._();
 
   factory _RemoteCall.fromJson(Map<String, dynamic> json) =
       _$_RemoteCall.fromJson;

@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:localization_manager_plugin/models.dart';
 
 part 'remote_call.freezed.dart';
 part 'remote_call.g.dart';
@@ -9,7 +10,8 @@ part 'remote_call.g.dart';
 ///
 /// This is used to send a remote call to the server or plugin
 class RemoteCall with _$RemoteCall {
-  ///
+  RemoteCall._();
+
   /// This is used to send a remote call to the server or plugin
   factory RemoteCall({
     /// The method to call
@@ -25,6 +27,15 @@ class RemoteCall with _$RemoteCall {
     /// If this is null, no response will be sent back to the caller. (fire and forget)
     required String? id,
   }) = _RemoteCall;
+
+  /// Creates a [RemoteResponseError] from this [RemoteCall] with the given [message].
+  RemoteResponseError raise(String message) => RemoteResponseError(id: id!, message: message);
+
+  /// Creates a [RemoteResponseError] with an NoSuchMethodError for [method].
+  RemoteResponseError raiseNoSuchMethodError() => RemoteResponseError(id: id!, message: "NoSuchMethodError: The method '$method' is not registered.");
+
+  /// Creates a [RemoteResponseSuccess] from this [RemoteCall] with the given [result].
+  RemoteResponseSuccess result(dynamic result) => RemoteResponseSuccess(id: id!, result: result.toJson());
 
   factory RemoteCall.fromJson(Map<String, dynamic> json) => _$RemoteCallFromJson(json);
 }

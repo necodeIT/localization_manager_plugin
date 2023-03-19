@@ -40,11 +40,25 @@ class Server {
         case MessageType.call:
           final call = RemoteCall.fromJson(message.data);
 
-          // TODO: check if method has handler and return error if not
+          if (!_handlers.containsKey(call.method)) {
+            if (call.id != null) return;
 
-          // TODO: call handler and return result (if id is specified)
+            respond(call.raiseNoSuchMethodError());
 
-          _handlers[call.method]!.call(call.params);
+            return;
+          }
+
+          try {
+            var result = _handlers[call.method]!.call(call.params);
+
+            if (call.id != null) {
+              respond(call.result(result));
+            }
+          } catch (e) {
+            if (call.id != null) {
+              respond(call.raise(e.toString()));
+            }
+          }
           break;
         case MessageType.response:
           final response = RemoteResponse.fromJson(message.data);
@@ -64,6 +78,7 @@ class Server {
   /// Waits for the server to close the connection.
   Future<void> waitForClose() => _socket!.done;
 
+  /// Calls a method on the server without waiting for a response.
   void invoke(String method, Map<String, dynamic> params) {
     _socket!.add(
       jsonEncode(
@@ -75,6 +90,7 @@ class Server {
     );
   }
 
+  /// Calls a method on the server and returns the result.
   Future<RemoteResponse> call(String method, Map<String, dynamic> params) async {
     final id = Uuid().v4();
     final completer = Completer<RemoteResponse>();
@@ -98,5 +114,16 @@ class Server {
     );
 
     return completer.future;
+  }
+
+  void respond(RemoteResponse response) {
+    _socket!.add(
+      jsonEncode(
+        Message(
+          type: MessageType.response,
+          data: response.toJson(),
+        ),
+      ),
+    );
   }
 }

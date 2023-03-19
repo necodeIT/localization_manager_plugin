@@ -15,17 +15,60 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 RemoteResponse _$RemoteResponseFromJson(Map<String, dynamic> json) {
-  return _RemoteResponse.fromJson(json);
+  switch (json['runtimeType']) {
+    case 'sucess':
+      return RemoteResponseSuccess.fromJson(json);
+    case 'error':
+      return RemoteResponseError.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'RemoteResponse',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
 mixin _$RemoteResponse {
   /// The id of the [RemoteCall]
   String get id => throw _privateConstructorUsedError;
-
-  /// The result of the method invoked by the [RemoteCall]
-  Map<String, dynamic> get result => throw _privateConstructorUsedError;
-
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id, Map<String, dynamic> result) sucess,
+    required TResult Function(String id, String message) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id, Map<String, dynamic> result)? sucess,
+    TResult? Function(String id, String message)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id, Map<String, dynamic> result)? sucess,
+    TResult Function(String id, String message)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RemoteResponseSuccess value) sucess,
+    required TResult Function(RemoteResponseError value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RemoteResponseSuccess value)? sucess,
+    TResult? Function(RemoteResponseError value)? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RemoteResponseSuccess value)? sucess,
+    TResult Function(RemoteResponseError value)? error,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RemoteResponseCopyWith<RemoteResponse> get copyWith =>
@@ -38,7 +81,7 @@ abstract class $RemoteResponseCopyWith<$Res> {
           RemoteResponse value, $Res Function(RemoteResponse) then) =
       _$RemoteResponseCopyWithImpl<$Res, RemoteResponse>;
   @useResult
-  $Res call({String id, Map<String, dynamic> result});
+  $Res call({String id});
 }
 
 /// @nodoc
@@ -55,38 +98,33 @@ class _$RemoteResponseCopyWithImpl<$Res, $Val extends RemoteResponse>
   @override
   $Res call({
     Object? id = null,
-    Object? result = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      result: null == result
-          ? _value.result
-          : result // ignore: cast_nullable_to_non_nullable
-              as Map<String, dynamic>,
     ) as $Val);
   }
 }
 
 /// @nodoc
-abstract class _$$_RemoteResponseCopyWith<$Res>
+abstract class _$$RemoteResponseSuccessCopyWith<$Res>
     implements $RemoteResponseCopyWith<$Res> {
-  factory _$$_RemoteResponseCopyWith(
-          _$_RemoteResponse value, $Res Function(_$_RemoteResponse) then) =
-      __$$_RemoteResponseCopyWithImpl<$Res>;
+  factory _$$RemoteResponseSuccessCopyWith(_$RemoteResponseSuccess value,
+          $Res Function(_$RemoteResponseSuccess) then) =
+      __$$RemoteResponseSuccessCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String id, Map<String, dynamic> result});
 }
 
 /// @nodoc
-class __$$_RemoteResponseCopyWithImpl<$Res>
-    extends _$RemoteResponseCopyWithImpl<$Res, _$_RemoteResponse>
-    implements _$$_RemoteResponseCopyWith<$Res> {
-  __$$_RemoteResponseCopyWithImpl(
-      _$_RemoteResponse _value, $Res Function(_$_RemoteResponse) _then)
+class __$$RemoteResponseSuccessCopyWithImpl<$Res>
+    extends _$RemoteResponseCopyWithImpl<$Res, _$RemoteResponseSuccess>
+    implements _$$RemoteResponseSuccessCopyWith<$Res> {
+  __$$RemoteResponseSuccessCopyWithImpl(_$RemoteResponseSuccess _value,
+      $Res Function(_$RemoteResponseSuccess) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -95,7 +133,7 @@ class __$$_RemoteResponseCopyWithImpl<$Res>
     Object? id = null,
     Object? result = null,
   }) {
-    return _then(_$_RemoteResponse(
+    return _then(_$RemoteResponseSuccess(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -110,13 +148,17 @@ class __$$_RemoteResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RemoteResponse implements _RemoteResponse {
-  _$_RemoteResponse(
-      {required this.id, required final Map<String, dynamic> result})
-      : _result = result;
+class _$RemoteResponseSuccess extends RemoteResponseSuccess {
+  _$RemoteResponseSuccess(
+      {required this.id,
+      required final Map<String, dynamic> result,
+      final String? $type})
+      : _result = result,
+        $type = $type ?? 'sucess',
+        super._();
 
-  factory _$_RemoteResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_RemoteResponseFromJson(json);
+  factory _$RemoteResponseSuccess.fromJson(Map<String, dynamic> json) =>
+      _$$RemoteResponseSuccessFromJson(json);
 
   /// The id of the [RemoteCall]
   @override
@@ -133,16 +175,19 @@ class _$_RemoteResponse implements _RemoteResponse {
     return EqualUnmodifiableMapView(_result);
   }
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
-    return 'RemoteResponse(id: $id, result: $result)';
+    return 'RemoteResponse.sucess(id: $id, result: $result)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RemoteResponse &&
+            other is _$RemoteResponseSuccess &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality().equals(other._result, _result));
   }
@@ -155,35 +200,275 @@ class _$_RemoteResponse implements _RemoteResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RemoteResponseCopyWith<_$_RemoteResponse> get copyWith =>
-      __$$_RemoteResponseCopyWithImpl<_$_RemoteResponse>(this, _$identity);
+  _$$RemoteResponseSuccessCopyWith<_$RemoteResponseSuccess> get copyWith =>
+      __$$RemoteResponseSuccessCopyWithImpl<_$RemoteResponseSuccess>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id, Map<String, dynamic> result) sucess,
+    required TResult Function(String id, String message) error,
+  }) {
+    return sucess(id, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id, Map<String, dynamic> result)? sucess,
+    TResult? Function(String id, String message)? error,
+  }) {
+    return sucess?.call(id, result);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id, Map<String, dynamic> result)? sucess,
+    TResult Function(String id, String message)? error,
+    required TResult orElse(),
+  }) {
+    if (sucess != null) {
+      return sucess(id, result);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RemoteResponseSuccess value) sucess,
+    required TResult Function(RemoteResponseError value) error,
+  }) {
+    return sucess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RemoteResponseSuccess value)? sucess,
+    TResult? Function(RemoteResponseError value)? error,
+  }) {
+    return sucess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RemoteResponseSuccess value)? sucess,
+    TResult Function(RemoteResponseError value)? error,
+    required TResult orElse(),
+  }) {
+    if (sucess != null) {
+      return sucess(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RemoteResponseToJson(
+    return _$$RemoteResponseSuccessToJson(
       this,
     );
   }
 }
 
-abstract class _RemoteResponse implements RemoteResponse {
-  factory _RemoteResponse(
+abstract class RemoteResponseSuccess extends RemoteResponse {
+  factory RemoteResponseSuccess(
       {required final String id,
-      required final Map<String, dynamic> result}) = _$_RemoteResponse;
+      required final Map<String, dynamic> result}) = _$RemoteResponseSuccess;
+  RemoteResponseSuccess._() : super._();
 
-  factory _RemoteResponse.fromJson(Map<String, dynamic> json) =
-      _$_RemoteResponse.fromJson;
+  factory RemoteResponseSuccess.fromJson(Map<String, dynamic> json) =
+      _$RemoteResponseSuccess.fromJson;
 
   @override
 
   /// The id of the [RemoteCall]
   String get id;
-  @override
 
   /// The result of the method invoked by the [RemoteCall]
   Map<String, dynamic> get result;
   @override
   @JsonKey(ignore: true)
-  _$$_RemoteResponseCopyWith<_$_RemoteResponse> get copyWith =>
+  _$$RemoteResponseSuccessCopyWith<_$RemoteResponseSuccess> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RemoteResponseErrorCopyWith<$Res>
+    implements $RemoteResponseCopyWith<$Res> {
+  factory _$$RemoteResponseErrorCopyWith(_$RemoteResponseError value,
+          $Res Function(_$RemoteResponseError) then) =
+      __$$RemoteResponseErrorCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String id, String message});
+}
+
+/// @nodoc
+class __$$RemoteResponseErrorCopyWithImpl<$Res>
+    extends _$RemoteResponseCopyWithImpl<$Res, _$RemoteResponseError>
+    implements _$$RemoteResponseErrorCopyWith<$Res> {
+  __$$RemoteResponseErrorCopyWithImpl(
+      _$RemoteResponseError _value, $Res Function(_$RemoteResponseError) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? message = null,
+  }) {
+    return _then(_$RemoteResponseError(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$RemoteResponseError extends RemoteResponseError {
+  _$RemoteResponseError(
+      {required this.id, required this.message, final String? $type})
+      : $type = $type ?? 'error',
+        super._();
+
+  factory _$RemoteResponseError.fromJson(Map<String, dynamic> json) =>
+      _$$RemoteResponseErrorFromJson(json);
+
+  /// The id of the [RemoteCall]
+  @override
+  final String id;
+
+  /// The error message
+  @override
+  final String message;
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'RemoteResponse.error(id: $id, message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoteResponseError &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, message);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoteResponseErrorCopyWith<_$RemoteResponseError> get copyWith =>
+      __$$RemoteResponseErrorCopyWithImpl<_$RemoteResponseError>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String id, Map<String, dynamic> result) sucess,
+    required TResult Function(String id, String message) error,
+  }) {
+    return error(id, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String id, Map<String, dynamic> result)? sucess,
+    TResult? Function(String id, String message)? error,
+  }) {
+    return error?.call(id, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String id, Map<String, dynamic> result)? sucess,
+    TResult Function(String id, String message)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(id, message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(RemoteResponseSuccess value) sucess,
+    required TResult Function(RemoteResponseError value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(RemoteResponseSuccess value)? sucess,
+    TResult? Function(RemoteResponseError value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(RemoteResponseSuccess value)? sucess,
+    TResult Function(RemoteResponseError value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$RemoteResponseErrorToJson(
+      this,
+    );
+  }
+}
+
+abstract class RemoteResponseError extends RemoteResponse {
+  factory RemoteResponseError(
+      {required final String id,
+      required final String message}) = _$RemoteResponseError;
+  RemoteResponseError._() : super._();
+
+  factory RemoteResponseError.fromJson(Map<String, dynamic> json) =
+      _$RemoteResponseError.fromJson;
+
+  @override
+
+  /// The id of the [RemoteCall]
+  String get id;
+
+  /// The error message
+  String get message;
+  @override
+  @JsonKey(ignore: true)
+  _$$RemoteResponseErrorCopyWith<_$RemoteResponseError> get copyWith =>
       throw _privateConstructorUsedError;
 }

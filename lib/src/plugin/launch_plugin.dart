@@ -8,7 +8,21 @@ part of localization_manager_plugin;
 Future<void> launchPlguin(List<String> args, {required ProjectParser parseProject, required TranslationFileGenerator generateTranslationFiles}) async {}
 
 /// A function that genrates a [TranslationFolder] from the translation files present.
-typedef ProjectParser = TranslationFolder Function(ProjectConfig, Server, Function(String));
+///
+/// [ProjectConfig] The configuration of the project.
+///
+/// [Server] Handles the communication with the server.
+///
+/// [Logger] Provides utility methods for logging.
+typedef ProjectParser = TranslationFolder Function(ProjectConfig, Server, Logger);
 
 /// A function that generates the translation files from a [TranslationFolder].
-typedef TranslationFileGenerator = void Function(ProjectConfig, Server, TranslationFolder);
+///
+/// [ProjectConfig] The configuration of the project.
+///
+/// [Server] Handles the communication with the server.
+///
+/// [Logger] Provides utility methods for logging.
+///
+/// [TranslationFolder] Contains all translations of the project.
+typedef TranslationFileGenerator = void Function(ProjectConfig, Server, Logger, TranslationFolder);
